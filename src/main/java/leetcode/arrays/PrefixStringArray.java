@@ -1,4 +1,4 @@
-package leetcode.stringarrays;
+package leetcode.arrays;
 
 public class PrefixStringArray {
     public static String getPrefix(String[] array) {
