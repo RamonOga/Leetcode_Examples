@@ -9,10 +9,10 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
     @Column(name="name")
-    String name;
+    private String name;
 
     public static Car of(String name) {
         Car car = new Car();
