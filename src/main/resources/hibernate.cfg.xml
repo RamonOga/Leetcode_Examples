@@ -20,6 +20,8 @@
 
 
 
+        <mapping class="simpleTasks.lazy.Category"/>
+        <mapping class="simpleTasks.lazy.Task"/>
         <mapping class="simpleTasks.books.Author"/>
         <mapping class="simpleTasks.books.Book"/>
         <mapping class="simpleTasks.manytomany.Person"/>

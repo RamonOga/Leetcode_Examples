@@ -1,28 +1,23 @@
-package simpleTasks.cars.model;
-
-import javax.persistence.*;
+package simpleTasks.lazy;import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name="car")
-public class Car {
-
+@Table(name = "categories")
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="name")
     private String name;
+    @OneToMany(mappedBy = "category")
+    private List<Task> tasks = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "mark_id")
-    private Mark mark;
-
-    public static Car of(String name, Mark mark) {
-        Car car = new Car();
-        car.setName(name);
-        car.setMark(mark);
-        return car;
+    public static Category of(String name) {
+        Category category = new Category();
+        category.name = name;
+        return category;
     }
 
     public int getId() {
@@ -41,33 +36,32 @@ public class Car {
         this.name = name;
     }
 
-    public Mark getMark() {
-        return mark;
+    public List<Task> getTasks() {
+        return tasks;
     }
 
-    public void setMark(Mark mark) {
-        this.mark = mark;
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Car car = (Car) o;
-        return id == car.id && Objects.equals(name, car.name);
+        Category category = (Category) o;
+        return id == category.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
-        return "Car{" +
+        return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", mark_id=" + mark.getId() +
                 '}';
     }
 }
