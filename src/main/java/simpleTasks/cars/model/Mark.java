@@ -5,6 +5,7 @@ import org.hibernate.annotations.Cascade;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="mark")
@@ -16,7 +17,7 @@ public class Mark {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "mark")
     private final List<Car> carList = new ArrayList<>();
 
     public static Mark of(String name) {
@@ -45,14 +46,21 @@ public class Mark {
         return carList.add(car);
     }
 
+    public List<Car> getCarList() {
+        return carList;
+    }
+
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Mark mark = (Mark) o;
+        return id == mark.id && Objects.equals(name, mark.name) && Objects.equals(carList, mark.carList);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(id, name, carList);
     }
 
     @Override
