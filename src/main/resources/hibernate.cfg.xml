@@ -18,6 +18,12 @@
         <property name="format_sql">true</property>
         <property name="use_sql_comments">true</property>
 
+
+
+        <mapping class="simpleTasks.books.Author"/>
+        <mapping class="simpleTasks.books.Book"/>
+        <mapping class="simpleTasks.manytomany.Person"/>
+        <mapping class="simpleTasks.manytomany.Address"/>
         <mapping class="simpleTasks.cars.model.Car"/>
         <mapping class="simpleTasks.cars.model.Mark"/>
 
