@@ -16,27 +16,32 @@ public class Runner {
                 .configure().build();
         List<Mark> list = new ArrayList<>();
 
-
         try {
             SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
             Session session = sf.openSession();
             Transaction tran = session.beginTransaction();
 
-            list = session.createQuery("from Mark").list();
-
-            for (Mark mark : list) {
-                for (Car car : mark.getCarList()) {
-                    System.out.println(car);
-                }
-            }
+            list = session.createQuery(
+                    "select distinct m from Mark m join fetch m.carList"
+            ).list();
 
             tran.commit();
             session.close();
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         } finally {
             StandardServiceRegistryBuilder.destroy(registry);
+        }
+
+        /*for (Car car : list.get(0).getCarList()) {
+            System.out.println(car);
+        }*/
+
+        for (Mark mark : list) {
+            for (Car car : mark.getCarList()) {
+                System.out.println(car);
+            }
         }
     }
 
