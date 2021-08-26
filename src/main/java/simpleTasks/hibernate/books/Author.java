@@ -1,12 +1,12 @@
-package simpleTasks.books;
+package simpleTasks.hibernate.books;
 
 import javax.persistence.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "books")
-
-public class Book {
+@Table(name = "authors")
+public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -14,8 +14,11 @@ public class Book {
     @Column(name = "name")
     private String name;
 
-    public static Book of(String name) {
-        Book rsl = new Book();
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<Book> books = new ArrayList<>();
+
+    public static Author of(String name) {
+        Author rsl = new Author();
         rsl.setName(name);
         return rsl;
     }
@@ -34,5 +37,9 @@ public class Book {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void addBook(Book book) {
+        books.add(book);
     }
 }

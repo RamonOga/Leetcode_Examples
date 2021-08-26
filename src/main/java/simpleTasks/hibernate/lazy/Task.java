@@ -1,4 +1,4 @@
-package simpleTasks.lazy;
+package simpleTasks.hibernate.lazy;
 
 import javax.persistence.*;
 import java.util.Objects;

@@ -1,6 +1,4 @@
-package simpleTasks.cars.model;
-
-import org.hibernate.annotations.Cascade;
+package simpleTasks.hibernate.cars.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;

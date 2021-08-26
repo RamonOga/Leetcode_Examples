@@ -13,21 +13,21 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
 
+        <property name="hibernate.jdbc.time_zone">Asia/Tokyo</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="use_sql_comments">true</property>
 
-
-
-        <mapping class="simpleTasks.lazy.Category"/>
-        <mapping class="simpleTasks.lazy.Task"/>
-        <mapping class="simpleTasks.books.Author"/>
-        <mapping class="simpleTasks.books.Book"/>
-        <mapping class="simpleTasks.manytomany.Person"/>
-        <mapping class="simpleTasks.manytomany.Address"/>
-        <mapping class="simpleTasks.cars.model.Car"/>
-        <mapping class="simpleTasks.cars.model.Mark"/>
+        <mapping class="simpleTasks.hibernate.date.Product"/>
+        <mapping class="simpleTasks.hibernate.lazy.Category"/>
+        <mapping class="simpleTasks.hibernate.lazy.Task"/>
+        <mapping class="simpleTasks.hibernate.books.Author"/>
+        <mapping class="simpleTasks.hibernate.books.Book"/>
+        <mapping class="simpleTasks.hibernate.manytomany.Person"/>
+        <mapping class="simpleTasks.hibernate.manytomany.Address"/>
+        <mapping class="simpleTasks.hibernate.cars.model.Car"/>
+        <mapping class="simpleTasks.hibernate.cars.model.Mark"/>
 
     </session-factory>
 </hibernate-configuration>

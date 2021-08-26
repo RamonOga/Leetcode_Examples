@@ -1,12 +1,10 @@
-package simpleTasks.books;
+package simpleTasks.hibernate.books;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import simpleTasks.books.Author;
-import simpleTasks.books.Book;
 
 public class Runner {
     public static void main(String[] args) {

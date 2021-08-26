@@ -1,23 +1,28 @@
-package simpleTasks.lazy;import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+package simpleTasks.hibernate.cars.model;
+
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "categories")
-public class Category {
+@Table(name="car")
+public class Car {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name="name")
     private String name;
-    @OneToMany(mappedBy = "category")
-    private List<Task> tasks = new ArrayList<>();
 
-    public static Category of(String name) {
-        Category category = new Category();
-        category.name = name;
-        return category;
+    @ManyToOne
+    @JoinColumn(name = "mark_id")
+    private Mark mark;
+
+    public static Car of(String name, Mark mark) {
+        Car car = new Car();
+        car.setName(name);
+        car.setMark(mark);
+        return car;
     }
 
     public int getId() {
@@ -36,32 +41,33 @@ public class Category {
         this.name = name;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
+    public Mark getMark() {
+        return mark;
     }
 
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public void setMark(Mark mark) {
+        this.mark = mark;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Category category = (Category) o;
-        return id == category.id;
+        Car car = (Car) o;
+        return id == car.id && Objects.equals(name, car.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, name);
     }
 
     @Override
     public String toString() {
-        return "Category{" +
+        return "Car{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", mark_id=" + mark.getId() +
                 '}';
     }
 }

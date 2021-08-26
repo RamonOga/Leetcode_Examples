@@ -1,4 +1,4 @@
-package simpleTasks.manytomany;
+package simpleTasks.hibernate.manytomany;
 
 import javax.persistence.*;
 import java.util.Objects;

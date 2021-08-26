@@ -1,4 +1,4 @@
-package simpleTasks.lazy;
+package simpleTasks.hibernate.cars.model;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,41 +11,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Runner {
-
     public static void main(String[] args) {
-        List<Category> list = new ArrayList<>();
-
-
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure().build();
+        List<Mark> list = new ArrayList<>();
+
         try {
             SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
             Session session = sf.openSession();
             Transaction tran = session.beginTransaction();
 
-            /*Category category = Category.of("Category1");
-            Task task1 = Task.of("Task1", category);
-            Task task2 = Task.of("Task2", category);
-            Task task3 = Task.of("Task3", category);
-
-            session.persist(category);
-            session.persist(task1);
-            session.persist(task2);
-            session.persist(task3);*/
             list = session.createQuery(
-                    "select distinct c from Category c join fetch c.tasks"
+                    "select distinct m from Mark m join fetch m.carList"
             ).list();
+
             tran.commit();
             session.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             StandardServiceRegistryBuilder.destroy(registry);
         }
 
-        for (Task task : list.get(0).getTasks()) {
-            System.out.println(task);
+        /*for (Car car : list.get(0).getCarList()) {
+            System.out.println(car);
+        }*/
+
+        for (Mark mark : list) {
+            for (Car car : mark.getCarList()) {
+                System.out.println(car);
+            }
         }
+    }
+
+    private static void insert (Session session) {
+        Mark kia = Mark.of("KIA");
+        Mark bmw = Mark.of("BMW");
+        Car rio = Car.of("Rio", kia);
+        Car cerato = Car.of("Cerato", kia);
+        Car sorento = Car.of("Sorento", kia);
+        Car passat = Car.of("Passat", bmw);
+        Car passatCC = Car.of("Passat CC", bmw);
+        Car tuareg = Car.of("Tuareg", bmw);
+        session.save(kia);
+        session.save(bmw);
+
+        session.save(rio);
+        session.save(cerato);
+        session.save(sorento);
+        session.save(passat);
+        session.save(passatCC);
+        session.save(tuareg);
 
     }
 }
