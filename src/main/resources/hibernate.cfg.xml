@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://127.0.0.1:5432/mark_db</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://127.0.0.1:5432/cars_db</property>
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">password</property>
         <property name="hibernate.connection.pool_size">1</property>
@@ -19,7 +19,11 @@
         <property name="format_sql">true</property>
         <property name="use_sql_comments">true</property>
 
-        <mapping class="simpleTasks.hibernate.date.Product"/>
+        <mapping class="simpleTasks.hibernate.carstest.Driver"/>
+        <mapping class="simpleTasks.hibernate.carstest.Car"/>
+        <mapping class="simpleTasks.hibernate.carstest.Engine"/>
+
+        <!--<mapping class="simpleTasks.hibernate.date.Product"/>
         <mapping class="simpleTasks.hibernate.lazy.Category"/>
         <mapping class="simpleTasks.hibernate.lazy.Task"/>
         <mapping class="simpleTasks.hibernate.books.Author"/>
@@ -27,7 +31,7 @@
         <mapping class="simpleTasks.hibernate.manytomany.Person"/>
         <mapping class="simpleTasks.hibernate.manytomany.Address"/>
         <mapping class="simpleTasks.hibernate.cars.model.Car"/>
-        <mapping class="simpleTasks.hibernate.cars.model.Mark"/>
+        <mapping class="simpleTasks.hibernate.cars.model.Mark"/>-->
 
     </session-factory>
 </hibernate-configuration>
