@@ -4,12 +4,11 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 @NoArgsConstructor
+@Data
 @EqualsAndHashCode
 @ToString
 @Entity
@@ -29,28 +28,6 @@ public class Driver {
 
     public Driver (int id, String name) {
         this.id = id;
-        this.name = name;
-    }
-
-
-
-    public List<Car> getCarList() {
-        return carList;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
     }
 

@@ -12,7 +12,7 @@ import java.util.function.Function;
 
 
 public class Runner implements AutoCloseable{
-    final static StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+    private final static StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
             .configure().build();
     private static SessionFactory sf = new MetadataSources(registry)
             .buildMetadata().buildSessionFactory();

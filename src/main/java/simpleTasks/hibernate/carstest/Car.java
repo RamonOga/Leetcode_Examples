@@ -4,9 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @NoArgsConstructor
 @EqualsAndHashCode
@@ -44,31 +42,5 @@ public class Car {
    public List<Driver> getDriverList() {
         return driverList;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Engine getEngine() {
-        return engine;
-    }
-
-    public void setEngine(Engine engine) {
-        this.engine = engine;
-    }
-
-
 
 }
