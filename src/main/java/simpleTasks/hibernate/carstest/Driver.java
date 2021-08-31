@@ -4,11 +4,12 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @NoArgsConstructor
-@Data
 @EqualsAndHashCode
 @ToString
 @Entity
@@ -22,12 +23,8 @@ public class Driver {
     @Column(name = "driver_name")
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "history_owner",
-            joinColumns = {@JoinColumn(name = "driver_id",
-                    nullable = false, updatable = false) },
-            inverseJoinColumns = { @JoinColumn(name = "car_id",
-                    nullable = false, updatable = false ) })
+
+   @ElementCollection(targetClass=Car.class)
     private List<Car> carList = new ArrayList<>();
 
     public Driver (int id, String name) {
@@ -36,8 +33,25 @@ public class Driver {
     }
 
 
+
     public List<Car> getCarList() {
         return carList;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void addCar(Car car) {
