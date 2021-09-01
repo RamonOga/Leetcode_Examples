@@ -20,24 +20,32 @@ public class Runner implements AutoCloseable{
 
     public static void main(String[] args) {
 
-        Candidate can1 = new Candidate(0,"Junior","little",1000);
-        Candidate can2 = new Candidate(0,"Middle", "Acerage", 1500);
-        Candidate can3 = new Candidate(0,"Senior", "Lot", 2500);
+        /*Vacancy vacancy1 = new Vacancy(0, "Junior Dev");
+        Vacancy vacancy2 = new Vacancy(0, "Middle Dev");
+        Vacancy vacancy3 = new Vacancy(0, "Senior Dev");
+        Vacancy vacancy4 = new Vacancy(0, "TeamLead");
+
+        VacancyBase vacancyBase = new VacancyBase(0, "Java Developers Base");
+        vacancyBase.addVacancy(vacancy1);
+        vacancyBase.addVacancy(vacancy2);
+        vacancyBase.addVacancy(vacancy3);
+        vacancyBase.addVacancy(vacancy4);
 
 
+        Candidate can1 = new Candidate(0,"Junior","little",1000, vacancyBase);
+        Candidate can2 = new Candidate(0,"Middle", "Average", 1500, vacancyBase);
+        Candidate can3 = new Candidate(0,"Senior", "Lot", 2500, vacancyBase);
 
-       /* add(can1);
-        add(can2);
-        add(can3);*/
-        System.out.println(findAll());
-        System.out.println(findById(6));
-        System.out.println(findByName("Senior"));
-        updateName(6, "Markelov Roman");
-        System.out.println(findById(6));
-        updateSalary(6, 3500);
-        System.out.println(findById(6));
-        deleteById(4);
-        System.out.println(findAll());
+        addVacancy(vacancy1);
+        addVacancy(vacancy2);
+        addVacancy(vacancy3);
+        addVacancy(vacancy4);
+
+        addBase(vacancyBase);
+
+        addCandidate(can1);
+        addCandidate(can2);
+        addCandidate(can3);*/
 
         }
 
@@ -85,8 +93,11 @@ public class Runner implements AutoCloseable{
 
     public static Candidate findById(int id) {
         return tx(session -> session.createQuery(
-                "from Candidate where id = :param", Candidate.class)
-                .setParameter("param", id)
+                "select distinct c from Candidate c " +
+                        "join fetch c.base b " +
+                        "join fetch b.vacancyList " +
+                        "where c.id = :cId", Candidate.class
+        ).setParameter("cId", 1)
                 .uniqueResult());
 
 
@@ -109,8 +120,16 @@ public class Runner implements AutoCloseable{
                 .executeUpdate());
     }
 
-    public static void add(Candidate candidate) {
+    public static void addCandidate(Candidate candidate) {
         tx(session -> session.save(candidate));
+    }
+
+    public static void addVacancy(Vacancy vacancy) {
+        tx(session -> session.save(vacancy));
+    }
+
+    public static void addBase(VacancyBase base) {
+        tx(session -> session.save(base));
     }
 
     @Override

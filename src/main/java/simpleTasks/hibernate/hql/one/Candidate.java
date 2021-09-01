@@ -4,13 +4,10 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@AllArgsConstructor(access = AccessLevel.PUBLIC)
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode
 @ToString
-@Getter
-@Setter
 @Entity
 @Table(name = "candidate")
 public class Candidate {
@@ -18,11 +15,17 @@ public class Candidate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "name")
     private String name;
-    @Column(name = "experience")
     private String experience;
-    @Column(name = "salary")
     private int salary;
+    @OneToOne
+    private VacancyBase base;
 
+    public Candidate(int id, String name, String experience, int salary, VacancyBase base) {
+        this.id = id;
+        this.name = name;
+        this.experience = experience;
+        this.salary = salary;
+        this.base = base;
+    }
 }
