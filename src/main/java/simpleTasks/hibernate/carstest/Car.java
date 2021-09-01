@@ -17,14 +17,19 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "car_name")
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "engine_id")
+    @JoinColumn(name = "engine_id", foreignKey = @ForeignKey(name = "ENGINE_ID_FK") )
     private Engine engine;
 
-    @ElementCollection(targetClass=Driver.class)
+    /*@ElementCollection(targetClass=Driver.class)*/
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "history_owner",
+            joinColumns = { @JoinColumn(name = "driver_id",
+                    nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "car_id",
+                    nullable = false, updatable = false ) })
     private List<Driver> driverList = new ArrayList<>();
 
     public Car(int id, String name, Engine engine) {
@@ -33,14 +38,39 @@ public class Car {
         this.engine = engine;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "history_owner",
-            joinColumns = {@JoinColumn(name = "driver_id",
-                    nullable = false, updatable = false) },
-            inverseJoinColumns = { @JoinColumn(name = "car_id",
-                    nullable = false, updatable = false ) })
-   public List<Driver> getDriverList() {
+    public List<Driver> getDriverList() {
         return driverList;
     }
 
+    public void setDriverList(List<Driver> driverList) {
+        this.driverList = driverList;
+    }
+
+    public void addDriver(Driver driver) {
+        driverList.add(driver);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
 }

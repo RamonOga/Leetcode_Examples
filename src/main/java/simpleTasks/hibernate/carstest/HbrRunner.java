@@ -10,8 +10,10 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class HbrRunner {
 
-    final static StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+    private final static StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
             .configure().build();
+    private final static SessionFactory sf = new MetadataSources(registry)
+            .buildMetadata().buildSessionFactory();
 
     public static void main(String[] args) {
 
@@ -23,31 +25,27 @@ public class HbrRunner {
         Car audi = new Car(0, "audi", vagEngine);
         Driver driver1 = new Driver(0, "Driver1");
         Driver driver2 = new Driver(0, "Driver2");
-        Driver driver3 = new Driver(0, "Driver3");
 
-        driver1.addCar(kia);
-        driver1.addCar(hyundai);
-        driver2.addCar(bmw);
-        driver2.addCar(audi);
-        driver3.addCar(hyundai);
-        driver3.addCar(bmw);
+        kia.addDriver(driver1);
+        hyundai.addDriver(driver1);
+        bmw.addDriver(driver2);
+        audi.addDriver(driver2);
 
         Transaction transaction = null;
 
-        try(SessionFactory sf = new MetadataSources(registry)
-                .buildMetadata().buildSessionFactory();
-            Session session = sf.openSession()) {
+        try(Session session = sf.openSession())
+             {
             transaction = session.beginTransaction();
             session.save(koreanEngine);
             session.save(vagEngine);
+            session.save(driver1);
+            session.save(driver2);
             session.save(kia);
             session.save(hyundai);
             session.save(bmw);
             session.save(audi);
-            session.save(driver1);
-            session.save(driver2);
-            session.save(driver3);
-            transaction.commit();;
+            transaction.commit();
+
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();

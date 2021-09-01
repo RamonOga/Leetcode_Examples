@@ -18,12 +18,7 @@ public class Engine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "engine_name")
     private String name;
-
-    @OneToMany(mappedBy = "engine", cascade = CascadeType.ALL)
-    private List<Car> carList = new ArrayList<>();
-
 
 
     public Engine(int id, String name) {
