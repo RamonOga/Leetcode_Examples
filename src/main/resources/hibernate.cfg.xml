@@ -19,27 +19,27 @@
         <property name="format_sql">true</property>
         <property name="use_sql_comments">true</property>
 
-        <mapping class="simpleTasks.hibernate.carstest.Driver"/>
-        <mapping class="simpleTasks.hibernate.carstest.Car"/>
-        <mapping class="simpleTasks.hibernate.carstest.Engine"/>
+        <mapping class="simpletasks.hibernate.carstest.Driver"/>
+        <mapping class="simpletasks.hibernate.carstest.Car"/>
+        <mapping class="simpletasks.hibernate.carstest.Engine"/>
 
-        <!--<mapping class="simpleTasks.hibernate.hql.two.Book"/>
-        <mapping class="simpleTasks.hibernate.hql.two.Account"/>
-        <mapping class="simpleTasks.hibernate.hql.two.Student"/>
+        <!--<mapping class="simpletasks.hibernate.hql.two.Book"/>
+        <mapping class="simpletasks.hibernate.hql.two.Account"/>
+        <mapping class="simpletasks.hibernate.hql.two.Student"/>
 
-        <mapping class="simpleTasks.hibernate.hql.one.Candidate"/>
-        <mapping class="simpleTasks.hibernate.hql.one.VacancyBase"/>
-        <mapping class="simpleTasks.hibernate.hql.one.Vacancy"/>
+        <mapping class="simpletasks.hibernate.hql.one.Candidate"/>
+        <mapping class="simpletasks.hibernate.hql.one.VacancyBase"/>
+        <mapping class="simpletasks.hibernate.hql.one.Vacancy"/>
 
-        <mapping class="simpleTasks.hibernate.date.Product"/>
-        <mapping class="simpleTasks.hibernate.lazy.Category"/>
-        <mapping class="simpleTasks.hibernate.lazy.Task"/>
-        <mapping class="simpleTasks.hibernate.books.Author"/>
-        <mapping class="simpleTasks.hibernate.books.Book"/>
-        <mapping class="simpleTasks.hibernate.manytomany.Person"/>
-        <mapping class="simpleTasks.hibernate.manytomany.Address"/>
-        <mapping class="simpleTasks.hibernate.cars.model.Car"/>
-        <mapping class="simpleTasks.hibernate.cars.model.Mark"/>-->
+        <mapping class="simpletasks.hibernate.date.Product"/>
+        <mapping class="simpletasks.hibernate.lazy.Category"/>
+        <mapping class="simpletasks.hibernate.lazy.Task"/>
+        <mapping class="simpletasks.hibernate.books.Author"/>
+        <mapping class="simpletasks.hibernate.books.Book"/>
+        <mapping class="simpletasks.hibernate.manytomany.Person"/>
+        <mapping class="simpletasks.hibernate.manytomany.Address"/>
+        <mapping class="simpletasks.hibernate.cars.model.Car"/>
+        <mapping class="simpletasks.hibernate.cars.model.Mark"/>-->
 
     </session-factory>
 </hibernate-configuration>

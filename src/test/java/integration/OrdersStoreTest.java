@@ -4,8 +4,8 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import simpleTasks.integration.OrderItem;
-import simpleTasks.integration.OrdersStore;
+import simpletasks.integration.OrderItem;
+import simpletasks.integration.OrdersStore;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
