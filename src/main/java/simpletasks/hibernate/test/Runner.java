@@ -11,7 +11,7 @@ public class Runner {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure().build();
         try {
-            System.out.println("!!!");
+            System.out.println("main");
         }  catch (Exception e) {
             e.printStackTrace();
         } finally {
